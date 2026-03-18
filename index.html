@@ -119,7 +119,6 @@ img {
   <img src="https://i.ibb.co/bRysMc1P/images.jpg">
 </div>
 
-<!-- 🔊 الصوت -->
 <audio id="music" src="https://files.catbox.moe/1ww495.m4a"></audio>
 
 <canvas id="fireworks"></canvas>
@@ -148,7 +147,7 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 1000);
 
-let message = "💖 كل عيد يا حبيبتي وانتي عيدي 🫶🏻🙂المره دي بقا انا هستنا منك مفاجأه هشوفك هتعملي اي 😅😂 وهتعيدي عليا ازاي علشان انا كنت عاملها مفاجاه وباظت 🥲بس نشوف مفاجأتك 🙃🙂�خلاص مفاجأتك وبوظتيها ومفيش حاجه تاني افاجأك بيها والفكره باظت عامتا بس عدلنا وضفنا الاغنيه 🙂😅 بس كله عملته علشانك ومش مهم تشوفيه امتي وده مش كفايه انه يعبر عن حبي بس حبيت اخلي عندك فضول تعرفي حاجه بس هخلي عندك فضول من غير حاجه 🙂🥲🥲 لو لقيت حاجه في اليوم الي باقي ده هكتبها علشان طلع عيني علشان اصمم الموقع ده 😅😂 بس تستاهلي اكتر من كده ولو  اعرف  افرحك باي حاجه هعملها والمنظر الي شوفتيه ده و مخدش ثواني بس  مش ساهل تصميمه  بس شوفي حد هيعمل كده لحبيبته  ولا لا مش هتلقي  حد تعرفيه عملها كده  وهتلقي علي التيك توك الي عمل كده بس  قليل 🙂   🫶🤍وبس بحبك 🙃❤️ ❤️";
+let message = "💖 كل عيد يا حبيبتي وانتي عيدي 🫶🏻🙂المره دي بقا انا هستنا منك مفاجأه هشوفك هتعملي اي 😅😂 وهتعيدي عليا ازاي علشان انا كنت عاملها مفاجاه وباظت 🥲بس نشوف مفاجأتك 🙃🙂خلاص مفاجأتك وبوظتيها ومفيش حاجه تاني افاجأك بيها والفكره باظت عامتا بس عدلنا وضفنا الاغنيه 🙂😅 بس كله عملته علشانك ومش مهم تشوفيه امتي وده مش كفايه انه يعبر عن حبي بس حبيت اخلي عندك فضول تعرفي حاجه بس هخلي عندك فضول من غير حاجه 🙂🥲🥲 لو لقيت حاجه في اليوم الي باقي ده هكتبها علشان طلع عيني علشان اصمم الموقع ده 😅😂 بس تستاهلي اكتر من كده ولو  اعرف  افرحك باي حاجه هعملها والمنظر الي شوفتيه ده و مخدش ثواني بس  مش ساهل تصميمه  بس شوفي حد هيعمل كده لحبيبته  ولا لا مش هتلقي  حد تعرفيه عملها كده  وهتلقي علي التيك توك الي عمل كده بس  قليل 🙂   🫶🤍وبس بحبك 🙃❤️ ❤️";
 let i = 0;
 
 function typeWriter() {
@@ -160,12 +159,12 @@ function typeWriter() {
 }
 
 function openMessage() {
-  let p = document.getElementById("pass").value;
+  let p = document.getElementById("pass").value.trim();
 
   if(p === "22288") {
     showMessage();
   } else {
-    alert("😂😝😝 ❎❌❎❌❎غلط و مش هتعرفيه❎❌❎❌❎");
+    alert("😂😝😝 ❎❌❎❌❎ غلط ومش هتعرفيه ❎❌❎❌❎");
   }
 }
 
@@ -174,11 +173,9 @@ function showMessage() {
 
   if(i === 0) typeWriter();
 
-  // 🔊 تشغيل الصوت
   let music = document.getElementById("music");
   music.play();
 
-  // 🎆 ألعاب نارية مستمرة
   if (!window.fireworksStarted) {
     window.fireworksStarted = true;
 
@@ -191,7 +188,6 @@ function showMessage() {
   }
 }
 
-// 💖 قلوب
 setInterval(() => {
   let heart = document.createElement("div");
   heart.className = "heart";
@@ -200,9 +196,8 @@ setInterval(() => {
   document.body.appendChild(heart);
 
   setTimeout(() => heart.remove(), 5000);
-}, 400);
+}, 600);
 
-// 🎆 الألعاب النارية
 let canvas = document.getElementById("fireworks");
 let ctx = canvas.getContext("2d");
 
@@ -212,7 +207,7 @@ canvas.height = window.innerHeight;
 let particles = [];
 
 function createFirework(x, y) {
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 25; i++) {
     particles.push({
       x: x,
       y: y,
