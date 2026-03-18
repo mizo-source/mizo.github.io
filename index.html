@@ -4,12 +4,23 @@
   <title>موقعي</title>
 </head>
 
-<mizo style="background:black; color:white; text-align:center; font-family:sans-serif;">
+<body>
 
-  <h1>🔥 أهلاً بيك 🔥</h1>
-  <p>أنا Mizo وده موقعي</p>
+<script>
+let pass = prompt("ادخل الباسورد");
 
-  <button onclick="alert('منور 😎')">اضغط هنا</button>
+if(pass !== "542008") {
+  document.body.innerHTML = "<h1>❌ الدخول مرفوض</h1>";
+} else {
+  document.body.innerHTML = `
+    <body style="background:black; color:white; text-align:center; font-family:sans-serif;">
+      <h1>🔥 أهلاً بيك 🔥</h1>
+      <p>ده موقعي أنا Mizo</p>
+      <button onclick="alert('منور 😎')">اضغط هنا</button>
+    </body>
+  `;
+}
+</script>
 
-</mizo>
+</body>
 </html>
