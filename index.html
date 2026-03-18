@@ -4,72 +4,65 @@
   <title>Secret Love 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- خط جميل -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
-
   <style>
     body {
       margin: 0;
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(135deg, #1a0026, #4b006e, #ff4d6d);
-      color: white;
+      font-family: Arial;
       text-align: center;
+      color: white;
       overflow: hidden;
     }
 
+    /* خلفية */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ff4d6d, #1a0026);
+      z-index: -1;
+    }
+
     h1 {
-      margin-top: 80px;
-      font-size: 42px;
-      animation: glow 2s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px pink; }
-      to { text-shadow: 0 0 25px red; }
-    }
-
-    p {
-      font-size: 20px;
+      margin-top: 100px;
+      font-size: 40px;
+      text-shadow: 0 0 15px pink;
     }
 
     input {
       padding: 12px;
       border-radius: 20px;
       border: none;
-      text-align: center;
-      font-size: 16px;
       margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
     }
 
     button {
       padding: 12px 25px;
       border: none;
       border-radius: 25px;
-      background: #ff1e56;
+      background: linear-gradient(45deg, red, pink);
       color: white;
+      margin-top: 15px;
       font-size: 18px;
       cursor: pointer;
-      margin-top: 15px;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      transform: scale(1.1);
-      background: #ff4d6d;
+      box-shadow: 0 0 15px pink;
     }
 
     #secret {
       display: none;
-      margin-top: 30px;
-      font-size: 24px;
-      animation: fade 1.5s ease;
+      margin-top: 40px;
+      font-size: 28px;
+      animation: fade 2s;
     }
 
     img {
-      width: 200px;
+      width: 250px;
       margin-top: 20px;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      box-shadow: 0 0 20px pink;
+      animation: float 3s infinite alternate;
     }
 
     @keyframes fade {
@@ -77,16 +70,22 @@
       to {opacity: 1;}
     }
 
-    /* قلوب متحركة */
-    .heart {
-      position: absolute;
-      color: pink;
-      font-size: 20px;
-      animation: float 6s linear infinite;
+    @keyframes float {
+      from {transform: translateY(0);}
+      to {transform: translateY(-10px);}
     }
 
-    @keyframes float {
-      0% { transform: translateY(100vh); opacity: 1; }
+    /* قلوب */
+    .heart {
+      position: fixed;
+      color: pink;
+      font-size: 20px;
+      animation: hearts 5s linear infinite;
+    }
+
+    @keyframes hearts {
+      0% { transform: translateY(100vh); opacity: 0; }
+      50% { opacity: 1; }
       100% { transform: translateY(-10vh); opacity: 0; }
     }
   </style>
@@ -94,47 +93,55 @@
 
 <body>
 
-<h1>💖 رسالة سرية 💖</h1>
-<p>اكتب الباسورد عشان تشوف المفاجأة ❤️</p>
+<h1>💌 رسالة سرية 💌</h1>
 
-<input type="password" id="pass" placeholder="الباسورد ">
+<p>اكتب الباسورد أو استنى المفاجأة ❤️</p>
+
+<input type="password" id="pass" placeholder="الباسورد">
 <br>
-<button onclick="checkPass(542008)">فتح 💌</button>
+<button onclick="checkPass()">افتح 💖</button>
 
 <div id="secret">
-  <p>💖 أنا بحبك جدًا ومش قادر أعيش من غيرك 💖</p>
+  <p>💖 كل سنة وانت معايا وبحبك جدًا 💖</p>
 
-  <!-- صورة رومانسية -->
-  <img src="https://i.imgur.com/8Km9tLL.png">
+  <!-- الصورة -->
+  <img src="https://i.ibb.co/0jqHpnp/love.png">
 </div>
 
 <script>
+// 🔐 باسورد
 function checkPass() {
   let p = document.getElementById("pass").value;
 
-  if(p === "1234") {
+  if(p === "542008") {
     document.getElementById("secret").style.display = "block";
   } else {
     alert("❌ باسورد غلط");
   }
 }
 
-/* قلوب */
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 20 + 20 + "px";
+// ⏰ الجمعة الساعة 12
+let targetDate = new Date("2026-03-20T00:00:00");
 
+setInterval(() => {
+  let now = new Date();
+  if(now >= targetDate) {
+    document.getElementById("secret").style.display = "block";
+  }
+}, 1000);
+
+// 💖 قلوب
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
   document.body.appendChild(heart);
 
   setTimeout(() => {
     heart.remove();
-  }, 6000);
-}
-
-setInterval(createHeart, 300);
+  }, 5000);
+}, 400);
 </script>
 
 </body>
