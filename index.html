@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Secret Love 💖</title>
+  <title>Love Secret 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -11,20 +11,11 @@
       text-align: center;
       color: white;
       overflow: hidden;
-    }
-
-    /* خلفية */
-    body::before {
-      content: "";
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #ff4d6d, #1a0026);
-      z-index: -1;
+      background: linear-gradient(135deg, #1a0026, #ff4d6d);
     }
 
     h1 {
-      margin-top: 100px;
+      margin-top: 80px;
       font-size: 40px;
       text-shadow: 0 0 15px pink;
     }
@@ -53,8 +44,8 @@
     #secret {
       display: none;
       margin-top: 40px;
-      font-size: 28px;
-      animation: fade 2s;
+      font-size: 26px;
+      white-space: pre-line;
     }
 
     img {
@@ -65,17 +56,11 @@
       animation: float 3s infinite alternate;
     }
 
-    @keyframes fade {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
     @keyframes float {
       from {transform: translateY(0);}
       to {transform: translateY(-10px);}
     }
 
-    /* قلوب */
     .heart {
       position: fixed;
       color: pink;
@@ -99,36 +84,54 @@
 
 <input type="password" id="pass" placeholder="الباسورد">
 <br>
-<button onclick="checkPass()">افتح 💖</button>
+<button onclick="openMessage()">افتح 💖</button>
 
 <div id="secret">
-  <p>💖 كل سنة وانت معايا وبحبك جدًا 💖</p>
+  <p id="text"></p>
 
-  <!-- الصورة -->
-  <img src="https://i.ibb.co/0jqHpnp/love.png">
+  <!-- ✅ صورتك -->
+  <img src="https://i.ibb.co/bRysMc1P/images.jpg">
 </div>
 
 <script>
+// ✍️ كتابة الرسالة
+let message = "💖 كل سنة وانت معايا وبحبك جدًا 💖";
+let i = 0;
+
+function typeWriter() {
+  if (i < message.length) {
+    document.getElementById("text").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typeWriter, 80);
+  }
+}
+
 // 🔐 باسورد
-function checkPass() {
+function openMessage() {
   let p = document.getElementById("pass").value;
 
   if(p === "542008") {
-    document.getElementById("secret").style.display = "block";
+    showMessage();
   } else {
     alert("❌ باسورد غلط");
   }
 }
 
-// ⏰ الجمعة الساعة 12
+// ⏰ يوم الجمعة الساعة 12
 let targetDate = new Date("2026-03-20T00:00:00");
 
 setInterval(() => {
   let now = new Date();
   if(now >= targetDate) {
-    document.getElementById("secret").style.display = "block";
+    showMessage();
   }
 }, 1000);
+
+// 🎯 عرض الرسالة
+function showMessage() {
+  document.getElementById("secret").style.display = "block";
+  if(i === 0) typeWriter();
+}
 
 // 💖 قلوب
 setInterval(() => {
