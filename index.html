@@ -12,7 +12,7 @@ body {
   text-align: center;
   color: white;
   background: linear-gradient(135deg, #1a0026, #ff4d6d);
-  overflow: auto; /* ✅ تقدر تعمل Scroll */
+  overflow: auto;
 }
 
 h1 {
@@ -94,6 +94,16 @@ img {
   50% { opacity: 1; }
   100% { transform: translateY(-10vh); opacity: 0; }
 }
+
+/* 🎆 الألعاب النارية */
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
 </style>
 </head>
 
@@ -111,10 +121,11 @@ img {
 
 <div id="secret">
   <p id="text"></p>
-
-  <!-- ✅ الصورة شغالة -->
   <img src="https://i.ibb.co/bRysMc1P/images.jpg" onerror="this.style.display='none'">
 </div>
+
+<!-- 🎆 canvas -->
+<canvas id="fireworks"></canvas>
 
 <script>
 
@@ -144,11 +155,10 @@ function updateCountdown() {
      ⌛ ${minutes} دقيقة <br>
      🔥 ${seconds} ثانية`;
 }
-
 setInterval(updateCountdown, 1000);
 
 // ✍️ كتابة الرسالة
-let message = "💖  🫶🏻🫶🏻🫶🏻كل عيد وانتي عيدي كل سنه وانتي معايا كل عيد وأنتي أغلى وأجمل حاجة في حياتي، وجودك هو العيد الحقيقي اللي بيفرح قلبي قبل أي حاجة. ربنا يديمك ليا ، وكل لحظة معاك تبقى أحلى من اللي قبلها. عيدك مبارك يا اجمل حد في حياتي  بحبك 🫶🤍✨ ❤️";
+let message = "💖  🫶🏻🫶🏻🫶🏻كل عيد وانتي عيدي ... بحبك 🫶🤍✨ ❤️";
 let i = 0;
 
 function typeWriter() {
@@ -170,10 +180,20 @@ function openMessage() {
   }
 }
 
-// 🎯 عرض الرسالة
+// 🎯 عرض الرسالة + تشغيل الألعاب النارية
 function showMessage() {
   document.getElementById("secret").style.display = "block";
   if(i === 0) typeWriter();
+
+  // 🎆 تشغيل الألعاب
+  for(let i = 0; i < 6; i++) {
+    setTimeout(() => {
+      createFirework(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height / 2
+      );
+    }, i * 300);
+  }
 }
 
 // 💖 قلوب
@@ -184,10 +204,52 @@ setInterval(() => {
   heart.style.left = Math.random() * 100 + "vw";
   document.body.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 5000);
+  setTimeout(() => heart.remove(), 5000);
 }, 400);
+
+// 🎆 كود الألعاب النارية
+let canvas = document.getElementById("fireworks");
+let ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function createFirework(x, y) {
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: x,
+      y: y,
+      speedX: (Math.random() - 0.5) * 6,
+      speedY: (Math.random() - 0.5) * 6,
+      life: 100
+    });
+  }
+}
+
+function animateFireworks() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach((p, index) => {
+    p.x += p.speedX;
+    p.y += p.speedY;
+    p.life--;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = "pink";
+    ctx.fill();
+
+    if (p.life <= 0) {
+      particles.splice(index, 1);
+    }
+  });
+
+  requestAnimationFrame(animateFireworks);
+}
+
+animateFireworks();
 
 </script>
 
