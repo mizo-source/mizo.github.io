@@ -104,13 +104,11 @@ img {
 
 <body>
 
-<h1>💌 😂  رساله سريه تاني يا مسهل 😂 💌</h1>
+<h1>💌 😂 رساله سريه تاني يا مسهل 😂 💌</h1>
 
 <div id="countdown"></div>
 
-<p> بعد ما بوظتي المفاجأة ولكن مفاجأة العيد لازم نفاجأك والباسورد المره دي هيختلف ومش سهل 🙂😂 ❤️</p>
-
-<input type="  ❤️</p>
+<p>بعد ما بوظتي المفاجأة 😂❤️</p>
 
 <input type="password" id="pass" placeholder="الباسورد">
 <br>
@@ -121,14 +119,15 @@ img {
   <img src="https://i.ibb.co/bRysMc1P/images.jpg">
 </div>
 
+<!-- 🔊 الصوت -->
+<audio id="music" src="https://files.catbox.moe/1ww495.m4a"></audio>
+
 <canvas id="fireworks"></canvas>
 
 <script>
 
-// ⏰ وقت الجمعة
 let targetDate = new Date("2026-03-20T00:00:00");
 
-// 🔥 عداد
 function updateCountdown() {
   let now = new Date();
   let diff = targetDate - now;
@@ -145,16 +144,11 @@ function updateCountdown() {
   let seconds = Math.floor((diff / 1000) % 60);
 
   document.getElementById("countdown").innerHTML =
-    `⏳ باقي:<br>
-     💖 ${days} يوم <br>
-     ⏰ ${hours} ساعة <br>
-     ⌛ ${minutes} دقيقة <br>
-     🔥 ${seconds} ثانية`;
+    `⏳ باقي:<br>${days} يوم - ${hours} ساعة - ${minutes} دقيقة - ${seconds} ثانية`;
 }
 setInterval(updateCountdown, 1000);
 
-// ✍️ كتابة الرسالة
-let message = "المره دي بقا انا هستنا منك مفاجأه هشوفك هتعملي اي 😅😂 وهتعيدي عليا ازاي علشان انا كنت عاملها مفاجاه وباظت 🥲بس نشوف مفاجأتك 🙃🙂�خلاص مفاجأتك وبوظتيها ومفيش حاجه تاني افاجأك بيها والفكره باظت عامتا 🙂 بس كله عملته علشانك ومش مهم تشوفيه امتي وده مش كفايه انه يعبر عن حبي بس حبيت اخلي عندك فضول تعرفي حاجه بس هخلي عندك فضول من غير حاجه 🙂🥲🥲 لو لقيت حاجه في اليوم الي باقي ده هكتبها علشان طلع عيني علشان اصمم الموقع ده 😅😂 بس تستاهلي اكتر من كده ولو  اعرف  افرحك باي حاجه هعملها والمنظر الي شوفتيه ده و مخدش ثواني بس  مش ساهل تصميمه  بس شوفي حد هيعمل كده لحبيبته  ولا لا مش هتلقي  حد تعرفيه عملها كده  وهتلقي علي التيك توك الي عمل كده بس  قليل 🙂   🫶🤍وبس بحبك ❤️";
+let message = "💖 كل عيد وانتي عيدي ❤️";
 let i = 0;
 
 function typeWriter() {
@@ -165,22 +159,26 @@ function typeWriter() {
   }
 }
 
-// 🔐 باسورد
 function openMessage() {
   let p = document.getElementById("pass").value;
 
   if(p === "22288") {
     showMessage();
   } else {
-    alert("😂😝😝 ❎❌❎❌❎غلط و مش هتعرفيه❎❌❎❌❎  ");
+    alert("❌ غلط 😂");
   }
 }
 
-// 🎯 عرض الرسالة + ألعاب نارية مستمرة
 function showMessage() {
   document.getElementById("secret").style.display = "block";
+
   if(i === 0) typeWriter();
 
+  // 🔊 تشغيل الصوت
+  let music = document.getElementById("music");
+  music.play();
+
+  // 🎆 ألعاب نارية مستمرة
   if (!window.fireworksStarted) {
     window.fireworksStarted = true;
 
